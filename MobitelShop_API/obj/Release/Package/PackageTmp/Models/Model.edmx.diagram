@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6b56d10b51a445e5b866a13b29a4d8f6" Name="Diagram1">
+        <EntityTypeShape EntityType="hci231_MobitelShopModel.Brendovi" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="hci231_MobitelShopModel.CpuJezgre" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="hci231_MobitelShopModel.Kupci" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="hci231_MobitelShopModel.Memorija" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hci231_MobitelShopModel.Mobiteli" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="hci231_MobitelShopModel.NarudzbaStavke" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="hci231_MobitelShopModel.Narudzbe" Width="1.5" PointX="3" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="hci231_MobitelShopModel.OperativniSistem" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hci231_MobitelShopModel.StatusNarudzbe" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="hci231_MobitelShopModel.Uloge" Width="1.5" PointX="2.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="hci231_MobitelShopModel.Uposlenici" Width="1.5" PointX="5" PointY="6" IsExpanded="true" />
+        <AssociationConnector Association="hci231_MobitelShopModel.FK_dbo_Mobiteli_dbo_Brendovi_Brendovi_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="hci231_MobitelShopModel.FK_dbo_Mobiteli_dbo_CpuJezgre_CpuJezgreId" ManuallyRouted="false" />
+        <AssociationConnector Association="hci231_MobitelShopModel.FK__Narudzbe__KupacI__68487DD7" ManuallyRouted="false" />
+        <AssociationConnector Association="hci231_MobitelShopModel.FK__Narudzbe__Status__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="hci231_MobitelShopModel.FK_dbo_Mobiteli_dbo_Memorija_MemorijaId" ManuallyRouted="false" />
+        <AssociationConnector Association="hci231_MobitelShopModel.FK__NarudzbaS__Mobit__6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="hci231_MobitelShopModel.FK__NarudzbaS__Narud__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="hci231_MobitelShopModel.FK_dbo_Uposlenici_dbo_Uloge_Uloge_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="hci231_MobitelShopModel.FK__Mobiteli__Operat__787EE5A0" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

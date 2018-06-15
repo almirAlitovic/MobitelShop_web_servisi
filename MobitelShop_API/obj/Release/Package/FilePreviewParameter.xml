@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="hci231.app.fit.ba" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Almir\\documents\\visual\ studio\ 2015\\Projects\\MobitelShop_API\\MobitelShop_API\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Almir\\documents\\visual\ studio\ 2015\\Projects\\MobitelShop_API\\MobitelShop_API\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="hci231_MobitelShopEntities-Web.config Connection String" description="" value="metadata=res://*/Models.Model.csdl|res://*/Models.Model.ssdl|res://*/Models.Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=hci231.app.fit.ba;initial catalog=hci231_MobitelShop;persist security info=True;user id=admin1;password=Kfj2f4^1;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\Almir\\documents\\visual\ studio\ 2015\\Projects\\MobitelShop_API\\MobitelShop_API\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='hci231_MobitelShopEntities']/@connectionString" />
+  </parameter>
+</parameters>

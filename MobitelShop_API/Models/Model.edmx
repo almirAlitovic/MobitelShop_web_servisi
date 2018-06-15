@@ -1,0 +1,748 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="hci231_MobitelShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Brendovi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="CpuJezgre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrojJezgri" Type="int" Nullable="false" />
+          <Property Name="Opis" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Kupci">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ime" Type="nvarchar(max)" />
+          <Property Name="Prezime" Type="nvarchar(max)" />
+          <Property Name="DatumRegistracije" Type="datetime" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="KorisnickoIme" Type="nvarchar(max)" />
+          <Property Name="Lozinka" Type="nvarchar(max)" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Memorija">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kapacitet" Type="real" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mobiteli">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar(max)" />
+          <Property Name="Cijena" Type="real" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="MemorijaId" Type="int" Nullable="false" />
+          <Property Name="CpuJezgreId" Type="int" Nullable="false" />
+          <Property Name="BrendoviId" Type="int" Nullable="false" />
+          <Property Name="OperativniSistemId" Type="int" Nullable="false" />
+          <Property Name="SlikaUrl" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="NarudzbaStavke">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kolicina" Type="int" Nullable="false" />
+          <Property Name="Cijena" Type="real" Nullable="false" />
+          <Property Name="Iznos" Type="real" Nullable="false" />
+          <Property Name="MobiteliId" Type="int" Nullable="false" />
+          <Property Name="NarudzbaId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Narudzbe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrojNarudzbe" Type="nvarchar(max)" />
+          <Property Name="Datum" Type="datetime" Nullable="false" />
+          <Property Name="UkupniIznos" Type="real" Nullable="false" />
+          <Property Name="KupacId" Type="int" Nullable="false" />
+          <Property Name="StatusNarudzbeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OperativniSistem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="StatusNarudzbe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Uloge">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Naziv" Type="nvarchar(max)" />
+          <Property Name="Opis" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Uposlenici">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ime" Type="nvarchar(max)" />
+          <Property Name="Prezime" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="Telefon" Type="nvarchar(max)" />
+          <Property Name="KorisnickoIme" Type="nvarchar(max)" />
+          <Property Name="Lozinka" Type="nvarchar(max)" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+          <Property Name="UlogeId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Mobiteli__Brendo__778AC167">
+          <End Role="Brendovi" Type="Self.Brendovi" Multiplicity="1" />
+          <End Role="Mobiteli" Type="Self.Mobiteli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brendovi">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mobiteli">
+              <PropertyRef Name="BrendoviId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Mobiteli__CpuJez__76969D2E">
+          <End Role="CpuJezgre" Type="Self.CpuJezgre" Multiplicity="1" />
+          <End Role="Mobiteli" Type="Self.Mobiteli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CpuJezgre">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mobiteli">
+              <PropertyRef Name="CpuJezgreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Mobiteli__Memori__75A278F5">
+          <End Role="Memorija" Type="Self.Memorija" Multiplicity="1" />
+          <End Role="Mobiteli" Type="Self.Mobiteli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Memorija">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mobiteli">
+              <PropertyRef Name="MemorijaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Mobiteli__Operat__787EE5A0">
+          <End Role="OperativniSistem" Type="Self.OperativniSistem" Multiplicity="1" />
+          <End Role="Mobiteli" Type="Self.Mobiteli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperativniSistem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mobiteli">
+              <PropertyRef Name="OperativniSistemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NarudzbaS__Mobit__7B5B524B">
+          <End Role="Mobiteli" Type="Self.Mobiteli" Multiplicity="1" />
+          <End Role="NarudzbaStavke" Type="Self.NarudzbaStavke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mobiteli">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NarudzbaStavke">
+              <PropertyRef Name="MobiteliId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NarudzbaS__Narud__7C4F7684">
+          <End Role="Narudzbe" Type="Self.Narudzbe" Multiplicity="1" />
+          <End Role="NarudzbaStavke" Type="Self.NarudzbaStavke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Narudzbe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NarudzbaStavke">
+              <PropertyRef Name="NarudzbaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Narudzbe__KupacI__68487DD7">
+          <End Role="Kupci" Type="Self.Kupci" Multiplicity="1" />
+          <End Role="Narudzbe" Type="Self.Narudzbe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kupci">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Narudzbe">
+              <PropertyRef Name="KupacId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Narudzbe__Status__693CA210">
+          <End Role="Kupci" Type="Self.Kupci" Multiplicity="1" />
+          <End Role="Narudzbe" Type="Self.Narudzbe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kupci">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Narudzbe">
+              <PropertyRef Name="StatusNarudzbeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Uposlenici_dbo_Uloge_Uloge_Id">
+          <End Role="Uloge" Type="Self.Uloge" Multiplicity="1" />
+          <End Role="Uposlenici" Type="Self.Uposlenici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uloge">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Uposlenici">
+              <PropertyRef Name="UlogeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="ms_SelectMobitelByNaziv" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="admin1">
+          <Parameter Name="Naziv" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="ms_SelectNarudzbaStavkeByKupacId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="admin1">
+          <Parameter Name="KupacId" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="hci231_MobitelShopModelStoreContainer">
+          <EntitySet Name="Brendovi" EntityType="Self.Brendovi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CpuJezgre" EntityType="Self.CpuJezgre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kupci" EntityType="Self.Kupci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Memorija" EntityType="Self.Memorija" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mobiteli" EntityType="Self.Mobiteli" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NarudzbaStavke" EntityType="Self.NarudzbaStavke" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Narudzbe" EntityType="Self.Narudzbe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OperativniSistem" EntityType="Self.OperativniSistem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusNarudzbe" EntityType="Self.StatusNarudzbe" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uloge" EntityType="Self.Uloge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Uposlenici" EntityType="Self.Uposlenici" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Mobiteli__Brendo__778AC167" Association="Self.FK__Mobiteli__Brendo__778AC167">
+            <End Role="Brendovi" EntitySet="Brendovi" />
+            <End Role="Mobiteli" EntitySet="Mobiteli" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Mobiteli__CpuJez__76969D2E" Association="Self.FK__Mobiteli__CpuJez__76969D2E">
+            <End Role="CpuJezgre" EntitySet="CpuJezgre" />
+            <End Role="Mobiteli" EntitySet="Mobiteli" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Mobiteli__Memori__75A278F5" Association="Self.FK__Mobiteli__Memori__75A278F5">
+            <End Role="Memorija" EntitySet="Memorija" />
+            <End Role="Mobiteli" EntitySet="Mobiteli" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Mobiteli__Operat__787EE5A0" Association="Self.FK__Mobiteli__Operat__787EE5A0">
+            <End Role="OperativniSistem" EntitySet="OperativniSistem" />
+            <End Role="Mobiteli" EntitySet="Mobiteli" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NarudzbaS__Mobit__7B5B524B" Association="Self.FK__NarudzbaS__Mobit__7B5B524B">
+            <End Role="Mobiteli" EntitySet="Mobiteli" />
+            <End Role="NarudzbaStavke" EntitySet="NarudzbaStavke" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NarudzbaS__Narud__7C4F7684" Association="Self.FK__NarudzbaS__Narud__7C4F7684">
+            <End Role="Narudzbe" EntitySet="Narudzbe" />
+            <End Role="NarudzbaStavke" EntitySet="NarudzbaStavke" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Narudzbe__KupacI__68487DD7" Association="Self.FK__Narudzbe__KupacI__68487DD7">
+            <End Role="Kupci" EntitySet="Kupci" />
+            <End Role="Narudzbe" EntitySet="Narudzbe" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Narudzbe__Status__693CA210" Association="Self.FK__Narudzbe__Status__693CA210">
+            <End Role="Kupci" EntitySet="Kupci" />
+            <End Role="Narudzbe" EntitySet="Narudzbe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Uposlenici_dbo_Uloge_Uloge_Id" Association="Self.FK_dbo_Uposlenici_dbo_Uloge_Uloge_Id">
+            <End Role="Uloge" EntitySet="Uloge" />
+            <End Role="Uposlenici" EntitySet="Uposlenici" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="hci231_MobitelShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Brendovi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Mobiteli" Relationship="Self.FK_dbo_Mobiteli_dbo_Brendovi_Brendovi_Id" FromRole="Brendovi" ToRole="Mobiteli" />
+        </EntityType>
+        <EntityType Name="CpuJezgre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrojJezgri" Type="Int32" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Mobiteli" Relationship="Self.FK_dbo_Mobiteli_dbo_CpuJezgre_CpuJezgreId" FromRole="CpuJezgre" ToRole="Mobiteli" />
+        </EntityType>
+        <EntityType Name="Kupci">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Prezime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DatumRegistracije" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KorisnickoIme" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Lozinka" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Memorija">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kapacitet" Type="Single" Nullable="false" />
+          <NavigationProperty Name="Mobiteli" Relationship="Self.FK_dbo_Mobiteli_dbo_Memorija_MemorijaId" FromRole="Memorija" ToRole="Mobiteli" />
+        </EntityType>
+        <EntityType Name="Mobiteli">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Cijena" Type="Single" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="MemorijaId" Type="Int32" Nullable="false" />
+          <Property Name="CpuJezgreId" Type="Int32" Nullable="false" />
+          <Property Name="BrendoviId" Type="Int32" Nullable="false" />
+          <Property Name="SlikaUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Brendovi" Relationship="Self.FK_dbo_Mobiteli_dbo_Brendovi_Brendovi_Id" FromRole="Mobiteli" ToRole="Brendovi" />
+          <NavigationProperty Name="CpuJezgre" Relationship="Self.FK_dbo_Mobiteli_dbo_CpuJezgre_CpuJezgreId" FromRole="Mobiteli" ToRole="CpuJezgre" />
+          <NavigationProperty Name="Memorija" Relationship="Self.FK_dbo_Mobiteli_dbo_Memorija_MemorijaId" FromRole="Mobiteli" ToRole="Memorija" />
+          <NavigationProperty Name="NarudzbaStavke" Relationship="Self.FK__NarudzbaS__Mobit__6C190EBB" FromRole="Mobiteli" ToRole="NarudzbaStavke" />
+          <Property Name="OperativniSistemId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OperativniSistem" Relationship="hci231_MobitelShopModel.FK__Mobiteli__Operat__787EE5A0" FromRole="Mobiteli" ToRole="OperativniSistem" />
+        </EntityType>
+        <EntityType Name="NarudzbaStavke">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kolicina" Type="Int32" Nullable="false" />
+          <Property Name="Cijena" Type="Single" Nullable="false" />
+          <Property Name="Iznos" Type="Single" Nullable="false" />
+          <Property Name="MobiteliId" Type="Int32" Nullable="false" />
+          <Property Name="NarudzbaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Mobiteli" Relationship="Self.FK__NarudzbaS__Mobit__6C190EBB" FromRole="NarudzbaStavke" ToRole="Mobiteli" />
+          <NavigationProperty Name="Narudzbe" Relationship="Self.FK__NarudzbaS__Narud__6D0D32F4" FromRole="NarudzbaStavke" ToRole="Narudzbe" />
+        </EntityType>
+        <EntityType Name="Narudzbe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrojNarudzbe" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Datum" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UkupniIznos" Type="Single" Nullable="false" />
+          <Property Name="KupacId" Type="Int32" Nullable="false" />
+          <Property Name="StatusNarudzbeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Kupci" Relationship="Self.FK__Narudzbe__KupacI__68487DD7" FromRole="Narudzbe" ToRole="Kupci" />
+          <NavigationProperty Name="NarudzbaStavke" Relationship="Self.FK__NarudzbaS__Narud__6D0D32F4" FromRole="Narudzbe" ToRole="NarudzbaStavke" />
+        </EntityType>
+        <EntityType Name="OperativniSistem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Mobiteli" Relationship="hci231_MobitelShopModel.FK__Mobiteli__Operat__787EE5A0" FromRole="OperativniSistem" ToRole="Mobiteli" />
+        </EntityType>
+        <EntityType Name="StatusNarudzbe">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Uloge">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Uposlenici" Relationship="Self.FK_dbo_Uposlenici_dbo_Uloge_Uloge_Id" FromRole="Uloge" ToRole="Uposlenici" />
+        </EntityType>
+        <EntityType Name="Uposlenici">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Prezime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="KorisnickoIme" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Lozinka" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <Property Name="UlogeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Uloge" Relationship="Self.FK_dbo_Uposlenici_dbo_Uloge_Uloge_Id" FromRole="Uposlenici" ToRole="Uloge" />
+        </EntityType>
+        <Association Name="FK_dbo_Mobiteli_dbo_Brendovi_Brendovi_Id">
+          <End Role="Brendovi" Type="Self.Brendovi" Multiplicity="1" />
+          <End Role="Mobiteli" Type="Self.Mobiteli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brendovi">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mobiteli">
+              <PropertyRef Name="BrendoviId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Mobiteli_dbo_CpuJezgre_CpuJezgreId">
+          <End Role="CpuJezgre" Type="Self.CpuJezgre" Multiplicity="1" />
+          <End Role="Mobiteli" Type="Self.Mobiteli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CpuJezgre">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mobiteli">
+              <PropertyRef Name="CpuJezgreId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Narudzbe__KupacI__68487DD7">
+          <End Role="Kupci" Type="Self.Kupci" Multiplicity="1" />
+          <End Role="Narudzbe" Type="Self.Narudzbe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kupci">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Narudzbe">
+              <PropertyRef Name="KupacId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Narudzbe__Status__693CA210">
+          <End Role="Kupci" Type="Self.Kupci" Multiplicity="1" />
+          <End Role="Narudzbe" Type="Self.Narudzbe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kupci">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Narudzbe">
+              <PropertyRef Name="StatusNarudzbeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Mobiteli_dbo_Memorija_MemorijaId">
+          <End Role="Memorija" Type="Self.Memorija" Multiplicity="1" />
+          <End Role="Mobiteli" Type="Self.Mobiteli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Memorija">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mobiteli">
+              <PropertyRef Name="MemorijaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NarudzbaS__Mobit__6C190EBB">
+          <End Role="Mobiteli" Type="Self.Mobiteli" Multiplicity="1" />
+          <End Role="NarudzbaStavke" Type="Self.NarudzbaStavke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mobiteli">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NarudzbaStavke">
+              <PropertyRef Name="MobiteliId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NarudzbaS__Narud__6D0D32F4">
+          <End Role="Narudzbe" Type="Self.Narudzbe" Multiplicity="1" />
+          <End Role="NarudzbaStavke" Type="Self.NarudzbaStavke" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Narudzbe">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NarudzbaStavke">
+              <PropertyRef Name="NarudzbaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Uposlenici_dbo_Uloge_Uloge_Id">
+          <End Role="Uloge" Type="Self.Uloge" Multiplicity="1" />
+          <End Role="Uposlenici" Type="Self.Uposlenici" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Uloge">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Uposlenici">
+              <PropertyRef Name="UlogeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="hci231_MobitelShopEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Brendovi" EntityType="Self.Brendovi" />
+          <EntitySet Name="CpuJezgre" EntityType="Self.CpuJezgre" />
+          <EntitySet Name="Kupci" EntityType="Self.Kupci" />
+          <EntitySet Name="Memorija" EntityType="Self.Memorija" />
+          <EntitySet Name="Mobiteli" EntityType="Self.Mobiteli" />
+          <EntitySet Name="NarudzbaStavke" EntityType="Self.NarudzbaStavke" />
+          <EntitySet Name="Narudzbe" EntityType="Self.Narudzbe" />
+          <EntitySet Name="OperativniSistem" EntityType="Self.OperativniSistem" />
+          <EntitySet Name="StatusNarudzbe" EntityType="Self.StatusNarudzbe" />
+          <EntitySet Name="Uloge" EntityType="Self.Uloge" />
+          <EntitySet Name="Uposlenici" EntityType="Self.Uposlenici" />
+          <AssociationSet Name="FK_dbo_Mobiteli_dbo_Brendovi_Brendovi_Id" Association="Self.FK_dbo_Mobiteli_dbo_Brendovi_Brendovi_Id">
+            <End Role="Brendovi" EntitySet="Brendovi" />
+            <End Role="Mobiteli" EntitySet="Mobiteli" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Mobiteli_dbo_CpuJezgre_CpuJezgreId" Association="Self.FK_dbo_Mobiteli_dbo_CpuJezgre_CpuJezgreId">
+            <End Role="CpuJezgre" EntitySet="CpuJezgre" />
+            <End Role="Mobiteli" EntitySet="Mobiteli" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Narudzbe__KupacI__68487DD7" Association="Self.FK__Narudzbe__KupacI__68487DD7">
+            <End Role="Kupci" EntitySet="Kupci" />
+            <End Role="Narudzbe" EntitySet="Narudzbe" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Narudzbe__Status__693CA210" Association="Self.FK__Narudzbe__Status__693CA210">
+            <End Role="Kupci" EntitySet="Kupci" />
+            <End Role="Narudzbe" EntitySet="Narudzbe" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Mobiteli_dbo_Memorija_MemorijaId" Association="Self.FK_dbo_Mobiteli_dbo_Memorija_MemorijaId">
+            <End Role="Memorija" EntitySet="Memorija" />
+            <End Role="Mobiteli" EntitySet="Mobiteli" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NarudzbaS__Mobit__6C190EBB" Association="Self.FK__NarudzbaS__Mobit__6C190EBB">
+            <End Role="Mobiteli" EntitySet="Mobiteli" />
+            <End Role="NarudzbaStavke" EntitySet="NarudzbaStavke" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NarudzbaS__Narud__6D0D32F4" Association="Self.FK__NarudzbaS__Narud__6D0D32F4">
+            <End Role="Narudzbe" EntitySet="Narudzbe" />
+            <End Role="NarudzbaStavke" EntitySet="NarudzbaStavke" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Uposlenici_dbo_Uloge_Uloge_Id" Association="Self.FK_dbo_Uposlenici_dbo_Uloge_Uloge_Id">
+            <End Role="Uloge" EntitySet="Uloge" />
+            <End Role="Uposlenici" EntitySet="Uposlenici" />
+          </AssociationSet>
+          <FunctionImport Name="ms_SelectMobitelByNaziv" EntitySet="Mobiteli" ReturnType="Collection(hci231_MobitelShopModel.Mobiteli)">
+          <Parameter Name="Naziv" Mode="In" Type="String" />
+          </FunctionImport>
+          <AssociationSet Name="FK__Mobiteli__Operat__787EE5A0" Association="hci231_MobitelShopModel.FK__Mobiteli__Operat__787EE5A0">
+            <End Role="OperativniSistem" EntitySet="OperativniSistem" />
+            <End Role="Mobiteli" EntitySet="Mobiteli" />
+          </AssociationSet>
+          <FunctionImport Name="ms_SelectNarudzbaStavkeByKupacId" ReturnType="Collection(hci231_MobitelShopModel.ms_SelectNarudzbaStavkeByKupacId_Result)">
+          <Parameter Name="KupacId" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="ms_SelectMobitelByNaziv_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="true" />
+          <Property Type="Single" Name="Cijena" Nullable="false" />
+          <Property Type="Boolean" Name="Status" Nullable="false" />
+          <Property Type="Int32" Name="MemorijaId" Nullable="false" />
+          <Property Type="Int32" Name="CpuJezgreId" Nullable="false" />
+          <Property Type="Int32" Name="BrendoviId" Nullable="false" />
+          <Property Type="String" Name="SlikaUrl" Nullable="true" />
+        </ComplexType>
+        <Association Name="FK__Mobiteli__Operat__787EE5A0">
+          <End Type="hci231_MobitelShopModel.OperativniSistem" Role="OperativniSistem" Multiplicity="1" />
+          <End Type="hci231_MobitelShopModel.Mobiteli" Role="Mobiteli" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperativniSistem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Mobiteli">
+              <PropertyRef Name="OperativniSistemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="ms_SelectNarudzbaStavkeByKupacId_Result">
+          <Property Type="String" Name="BrojNarudzbe" Nullable="true" />
+          <Property Type="DateTime" Name="Datum" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="MobitelId" Nullable="false" />
+          <Property Type="String" Name="Naziv" Nullable="true" />
+          <Property Type="Single" Name="Cijena" Nullable="false" />
+          <Property Type="Int32" Name="Kolicina" Nullable="false" />
+          <Property Type="String" Name="SlikaUrl" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="hci231_MobitelShopModelStoreContainer" CdmEntityContainer="hci231_MobitelShopEntities">
+          <EntitySetMapping Name="Brendovi">
+            <EntityTypeMapping TypeName="hci231_MobitelShopModel.Brendovi">
+              <MappingFragment StoreEntitySet="Brendovi">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CpuJezgre">
+            <EntityTypeMapping TypeName="hci231_MobitelShopModel.CpuJezgre">
+              <MappingFragment StoreEntitySet="CpuJezgre">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BrojJezgri" ColumnName="BrojJezgri" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kupci">
+            <EntityTypeMapping TypeName="hci231_MobitelShopModel.Kupci">
+              <MappingFragment StoreEntitySet="Kupci">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="DatumRegistracije" ColumnName="DatumRegistracije" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+                <ScalarProperty Name="Lozinka" ColumnName="Lozinka" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Memorija">
+            <EntityTypeMapping TypeName="hci231_MobitelShopModel.Memorija">
+              <MappingFragment StoreEntitySet="Memorija">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Kapacitet" ColumnName="Kapacitet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mobiteli">
+            <EntityTypeMapping TypeName="hci231_MobitelShopModel.Mobiteli">
+              <MappingFragment StoreEntitySet="Mobiteli">
+                <ScalarProperty Name="OperativniSistemId" ColumnName="OperativniSistemId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Cijena" ColumnName="Cijena" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="MemorijaId" ColumnName="MemorijaId" />
+                <ScalarProperty Name="CpuJezgreId" ColumnName="CpuJezgreId" />
+                <ScalarProperty Name="BrendoviId" ColumnName="BrendoviId" />
+                <ScalarProperty Name="SlikaUrl" ColumnName="SlikaUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NarudzbaStavke">
+            <EntityTypeMapping TypeName="hci231_MobitelShopModel.NarudzbaStavke">
+              <MappingFragment StoreEntitySet="NarudzbaStavke">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Kolicina" ColumnName="Kolicina" />
+                <ScalarProperty Name="Cijena" ColumnName="Cijena" />
+                <ScalarProperty Name="Iznos" ColumnName="Iznos" />
+                <ScalarProperty Name="MobiteliId" ColumnName="MobiteliId" />
+                <ScalarProperty Name="NarudzbaId" ColumnName="NarudzbaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Narudzbe">
+            <EntityTypeMapping TypeName="hci231_MobitelShopModel.Narudzbe">
+              <MappingFragment StoreEntitySet="Narudzbe">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BrojNarudzbe" ColumnName="BrojNarudzbe" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="UkupniIznos" ColumnName="UkupniIznos" />
+                <ScalarProperty Name="KupacId" ColumnName="KupacId" />
+                <ScalarProperty Name="StatusNarudzbeId" ColumnName="StatusNarudzbeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OperativniSistem">
+            <EntityTypeMapping TypeName="hci231_MobitelShopModel.OperativniSistem">
+              <MappingFragment StoreEntitySet="OperativniSistem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusNarudzbe">
+            <EntityTypeMapping TypeName="hci231_MobitelShopModel.StatusNarudzbe">
+              <MappingFragment StoreEntitySet="StatusNarudzbe">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Uloge">
+            <EntityTypeMapping TypeName="hci231_MobitelShopModel.Uloge">
+              <MappingFragment StoreEntitySet="Uloge">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Uposlenici">
+            <EntityTypeMapping TypeName="hci231_MobitelShopModel.Uposlenici">
+              <MappingFragment StoreEntitySet="Uposlenici">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+                <ScalarProperty Name="Lozinka" ColumnName="Lozinka" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UlogeId" ColumnName="UlogeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ms_SelectMobitelByNaziv" FunctionName="hci231_MobitelShopModel.Store.ms_SelectMobitelByNaziv">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ms_SelectNarudzbaStavkeByKupacId" FunctionName="hci231_MobitelShopModel.Store.ms_SelectNarudzbaStavkeByKupacId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="hci231_MobitelShopModel.ms_SelectNarudzbaStavkeByKupacId_Result">
+                <ScalarProperty Name="BrojNarudzbe" ColumnName="BrojNarudzbe" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="MobitelId" ColumnName="MobitelId" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="Cijena" ColumnName="Cijena" />
+                <ScalarProperty Name="Kolicina" ColumnName="Kolicina" />
+                <ScalarProperty Name="SlikaUrl" ColumnName="SlikaUrl" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
